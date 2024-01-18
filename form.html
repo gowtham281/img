@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Application Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff; /* White background */
+      color: #333; /* Dark text color */
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff; /* White background for the form */
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Shadow box effect */
+    }
+
+    h1 {
+      background: linear-gradient(45deg, #f06292, #9575cd, #64b5f6, #4db6ac); /* Abstract gradient for the title */
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: bold;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background for form elements */
+      border: 1px solid #ccc; /* Add a border for better visibility */
+    }
+
+    .btn {
+      padding: 12px 30px; /* Increased padding for a medium-sized button */
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50 !important; /* Green background for the apply button */
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #45a049; /* Darker green on hover */
+      transform: scaleX(1.1);
+    }
+
+    .error {
+      color: #ff6961;
+    }
+
+    .success {
+      color: #00ff00;
+      font-weight: bold;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Startup Application Form</h1>
+
+    <form id="jobApplicationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <span id="nameError" class="error"></span>
+
+      <label for="field">Company Name:</label>
+      <input type="text" id="field" name="field">
+      <span id="fieldError" class="error"></span>
+
+      <label for="productType">Product Type:</label>
+      <select id="productType" name="productType">
+        <option value="software">Software</option>
+        <option value="hardware">Hardware</option>
+        <option value="industry">Industrial Products</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+        <option value="shopping">Shopping Products</option>
+        <option value="fur">Furniture</option>
+        <option value="homeacc">Home Accessories</option>
+        <option value="drop">Drop Shipping</option>
+        <option value="toys">Toys</option>
+        <option value="crypto">Crypto</option>
+        <option value="consumer">Consumer Products</option>
+        <option value="Dairy">Dairy Products</option>
+        <option value="food">Food products</option>
+      </select>
+      <span id="productTypeError" class="error"></span>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+      <span id="emailError" class="error"></span>
+
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone">
+      <span id="phoneError" class="error"></span>
+
+      <label for="image">Upload Image:</label>
+      <input type="file" id="image" name="image" accept="image/*">
+      <span id="imageError" class="error"></span>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address"></textarea>
+      <span id="addressError" class="error"></span>
+
+      <label for="pin">Pin Code:</label>
+      <input type="text" id="pin" name="pin">
+      <span id="pinError" class="error"></span>
+
+      <label for="loc">Location:</label>
+      <select id="loc" name="loc">
+        <option value="software">Andhra Pradesh</option>
+        <option value="hardware">Arunachal Pradesh</option>
+        <option value="industry">Assam</option>
+        <option value="electronics">Bihar</option>
+        <option value="fashion">chhattisgarh</option>
+        <option value="shopping">Goa</option>
+        <option value="fur">Gujarat</option>
+        <option value="homeacc">Haryana</option>
+        <option value="drop">Himachal Pradesh</option>
+        <option value="toys">Jharkhand</option>
+        <option value="crypto">Karnataka</option>
+        <option value="consumer">Kerala</option>
+        <option value="Dairy">Madhya Pradesh</option>
+        <option value="food">Manipur</option>
+        <option value="toys">Meghalaya</option>
+        <option value="crypto">Mizoram</option>
+        <option value="consumer">Nagaland</option>
+        <option value="Dairy">Odisha</option>
+        <option value="food">Punjab</option>
+        <option value="software">Rajasthan</option>
+        <option value="hardware">Sikkim</option>
+        <option value="industry">Tamil Nadu</option>
+        <option value="electronics">Telangana</option>
+        <option value="fashion">Tirpura</option>
+        <option value="shopping">UttarKhand</option>
+        <option value="fur">Uttar Pradesh</option>
+        <option value="homeacc">West Bengal</option>
+      </select>
+      <span id="locError" class="error"></span>
+
+      <input type="submit" value="Apply">
+      <p id="submissionResult" class="success"></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('jobApplicationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      clearErrors();
+
+      if (!validateName() || !validateField() || !validateProductType() || !validateEmail() || !validatePhone() || !validateImage() || !validateAddress() || !validatePin() || !validateLoc()) {
+        return;
+      }
+
+      displaySubmissionResult('Application Submitted Successfully!');
+    });
+
+    function clearErrors() {
+      document.getElementById('nameError').innerText = '';
+      document.getElementById('fieldError').innerText = '';
+      document.getElementById('productTypeError').innerText = '';
+      document.getElementById('emailError').innerText = '';
+      document.getElementById('phoneError').innerText = '';
+      document.getElementById('imageError').innerText = '';
+      document.getElementById('addressError').innerText = '';
+      document.getElementById('pinError').innerText = '';
+      document.getElementById('locError').innerText = '';
+    }
+
+    function validateName() {
+      const nameInput = document.getElementById('name');
+      const nameError = document.getElementById('nameError');
+      const nameValue = nameInput.value.trim();
+
+      if (nameValue === '') {
+        nameError.innerText = 'Name is required';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateField() {
+      const fieldInput = document.getElementById('field');
+      const fieldError = document.getElementById('fieldError');
+      const fieldValue = fieldInput.value.trim();
+
+      if (fieldValue === '') {
+        fieldError.innerText = 'Company Name is required';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateProductType() {
+      const productTypeSelect = document.getElementById('productType');
+      const productTypeError = document.getElementById('productTypeError');
+      const productTypeValue = productTypeSelect.value.trim();
+
+      if (productTypeValue === '') {
+        productTypeError.innerText = 'Product Type is required';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateEmail() {
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      const emailValue = emailInput.value.trim();
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailValue === '') {
+        emailError.innerText = 'Email is required';
+        return false;
+      } else if (!emailRegex.test(emailValue)) {
+        emailError.innerText = 'Invalid email address';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validatePhone() {
+      const phoneInput = document.getElementById('phone');
+      const phoneError = document.getElementById('phoneError');
+      const phoneValue = phoneInput.value.trim();
+
+      const phoneRegex = /^\d{10}$/;
+
+      if (phoneValue === '') {
+        phoneError.innerText = 'Phone number is required';
+        return false;
+      } else if (!phoneRegex.test(phoneValue)) {
+        phoneError.innerText = 'Invalid phone number (10 digits required)';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateImage() {
+      const imageInput = document.getElementById('image');
+      const imageError = document.getElementById('imageError');
+      const imageValue = imageInput.value.trim();
+
+      if (imageValue === '') {
+        imageError.innerText = 'Image is required';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateAddress() {
+      const addressInput = document.getElementById('address');
+      const addressError = document.getElementById('addressError');
+      const addressValue = addressInput.value.trim();
+
+      if (addressValue === '') {
+        addressError.innerText = 'Address is required';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validatePin() {
+      const pinInput = document.getElementById('pin');
+      const pinError = document.getElementById('pinError');
+      const pinValue = pinInput.value.trim();
+
+      const pinRegex = /^\d{6}$/;
+
+      if (pinValue === '') {
+        pinError.innerText = 'Pincode is required';
+        return false;
+      } else if (!pinRegex.test(pinValue)) {
+        pinError.innerText = 'Invalid pincode (6 digits required)';
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateLoc() {
+      const locSelect = document.getElementById('loc');
+      const locError = document.getElementById('locError');
+      const locValue = locSelect.value.trim();
+
+      if (locValue === '') {
+        locError.innerText = 'Location is required';
+        return false;
+      }
+
+      return true;
+    }
+
+    function displaySubmissionResult(message) {
+      const submissionResult = document.getElementById('submissionResult');
+      submissionResult.innerText = message;
+      submissionResult.classList.add('success');
+    }
+  </script>
+
+</body>
+</html>
